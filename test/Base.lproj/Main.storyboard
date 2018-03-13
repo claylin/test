@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14092" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14081.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Stream View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="PhotoStreamViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3Ea-GQ-5J3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewLayout key="collectionViewLayout" id="c13-ZE-4OS" customClass="PinterestLayout" customModule="Pinterest" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AnnotatedPhotoCell" id="8eo-hp-pzo" customClass="AnnotatedPhotoCell" customModule="Pinterest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="JMv-oA-Ura" userLabel="Container View">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mE6-8h-fGC">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="127"/>
+                                                    <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Caption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhx-A4-0Wf">
+                                                    <rect key="frame" x="4" y="137" width="172" height="17"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Comment" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUa-1g-GyY">
+                                                    <rect key="frame" x="4" y="156" width="172" height="14"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="10"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="fhx-A4-0Wf" firstAttribute="top" secondItem="mE6-8h-fGC" secondAttribute="bottom" constant="10" id="DTw-r2-2mE"/>
+                                                <constraint firstItem="fhx-A4-0Wf" firstAttribute="leading" secondItem="JMv-oA-Ura" secondAttribute="leading" constant="4" id="Djs-9U-p6B"/>
+                                                <constraint firstAttribute="trailing" secondItem="fhx-A4-0Wf" secondAttribute="trailing" constant="4" id="LvZ-nq-sw2"/>
+                                                <constraint firstItem="rUa-1g-GyY" firstAttribute="top" secondItem="fhx-A4-0Wf" secondAttribute="bottom" constant="2" id="RR7-tF-2FI"/>
+                                                <constraint firstAttribute="trailing" secondItem="rUa-1g-GyY" secondAttribute="trailing" constant="4" id="VkG-bL-BKf"/>
+                                                <constraint firstItem="rUa-1g-GyY" firstAttribute="leading" secondItem="JMv-oA-Ura" secondAttribute="leading" constant="4" id="Zx8-SL-ZII"/>
+                                                <constraint firstAttribute="bottom" secondItem="rUa-1g-GyY" secondAttribute="bottom" constant="10" id="aav-m8-8fV"/>
+                                                <constraint firstAttribute="trailing" secondItem="mE6-8h-fGC" secondAttribute="trailing" id="dF2-dn-1CG"/>
+                                                <constraint firstItem="mE6-8h-fGC" firstAttribute="top" secondItem="JMv-oA-Ura" secondAttribute="top" id="er1-oh-cWj"/>
+                                                <constraint firstItem="mE6-8h-fGC" firstAttribute="leading" secondItem="JMv-oA-Ura" secondAttribute="leading" id="uMs-5w-re6"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JMv-oA-Ura" secondAttribute="trailing" id="17f-kB-aH9"/>
+                                    <constraint firstAttribute="bottom" secondItem="JMv-oA-Ura" secondAttribute="bottom" id="Hcz-gv-Adv"/>
+                                    <constraint firstItem="JMv-oA-Ura" firstAttribute="leading" secondItem="8eo-hp-pzo" secondAttribute="leading" id="NTJ-KU-d3W"/>
+                                    <constraint firstItem="JMv-oA-Ura" firstAttribute="top" secondItem="8eo-hp-pzo" secondAttribute="top" id="tdm-0H-3VI"/>
+                                </constraints>
+                                <size key="customSize" width="180" height="180"/>
+                                <connections>
+                                    <outlet property="captionLabel" destination="fhx-A4-0Wf" id="9j8-oh-5N7"/>
+                                    <outlet property="commentLabel" destination="rUa-1g-GyY" id="4RS-7q-72s"/>
+                                    <outlet property="containerView" destination="JMv-oA-Ura" id="V8p-Fa-6oj"/>
+                                    <outlet property="imageView" destination="mE6-8h-fGC" id="gwl-Gg-4Qv"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
