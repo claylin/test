@@ -1,3 +1,4 @@
 yfinance
 panel
 pandas-ta
+numpy==1.19
