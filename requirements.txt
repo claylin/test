@@ -1,2 +1,3 @@
 yfinance
 panel
+pandas-ta
