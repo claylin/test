@@ -3,13 +3,24 @@ from prefect import flow, task # Prefect flow and task decorators
 
 
 @flow(log_prints=True)
-def show_stars(github_repos: list[str]):
-    """Show the number of stars that GitHub repos have"""
-    for repo in github_repos:
-        repo_stats = fetch_stats(repo)
-        stars = get_stars(repo_stats)
-        print(f"{repo}: {stars} stars")
+# def show_stars(github_repos: list[str]):
+#     """Show the number of stars that GitHub repos have"""
+#     for repo in github_repos:
+#         repo_stats = fetch_stats(repo)
+#         stars = get_stars(repo_stats)
+#         print(f"{repo}: {stars} stars")
+def show_stars(github_repos: list[str]) -> None:
+    """Flow: Show number of GitHub repo stars"""
 
+    # Task 1: Make HTTP requests concurrently
+    stats_futures = fetch_stats.map(github_repos)
+
+    # Task 2: Once each concurrent task completes, get the star counts
+    stars = get_stars.map(stats_futures).result()
+
+    # Show the results
+    for repo, star_count in zip(github_repos, stars):
+        print(f"{repo}: {star_count} stars")
 
 @task
 def fetch_stats(github_repo: str):
