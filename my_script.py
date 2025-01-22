@@ -1,5 +1,6 @@
 import httpx
 from prefect import flow, task # Prefect flow and task decorators
+from prefect.concurrency.sync import rate_limit
 
 
 @flow(log_prints=True)
@@ -25,6 +26,7 @@ def show_stars(github_repos: list[str]) -> None:
 @task
 def fetch_stats(github_repo: str):
     """Fetch the statistics for a GitHub repo"""
+    rate_limit("github-api")
     api_response = httpx.get(f"https://api.github.com/repos/{github_repo}")
     api_response.raise_for_status() # Force a retry if not a 2xx status code
     return api_response.json()
