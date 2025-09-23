@@ -1,0 +1,53 @@
+import sys
+import os
+import pandas as pd
+import argparse
+from strategies.cmf_peaks_troughs_strategy import ConfigurableCMFPeaksTroughsStrategy
+from data_sources import data_source_manager
+
+def get_data_for_symbol(symbol, period="6mo"):
+    """
+    Fetch data using the same logic as the app (best source for symbol).
+    """
+    return data_source_manager.fetch_data(symbol, period)
+
+def scan_symbols(symbol_df, recent_period=5):
+    strategy = ConfigurableCMFPeaksTroughsStrategy()
+    found = []
+    for _, row in symbol_df.iterrows():
+        symbol = row['symbol']
+        period = row.get('period', '6mo')
+        smooth = row.get('smooth', 5)
+        prominence = row.get('prominence', 0.05)
+        try:
+            df = get_data_for_symbol(symbol, period=period)
+            if df is None or len(df) < recent_period:
+                continue
+            has_signal, signals = strategy.scan_signals_in_period(
+                df,
+                recent_period=recent_period,
+                period=period,
+                wma_period=smooth,
+                prominence=prominence
+            )
+            if has_signal:
+                found.append({'symbol': symbol, 'signals': signals})
+                print(f"{symbol}: {signals}")
+        except Exception as e:
+            print(f"Error processing {symbol}: {e}")
+    print(f"\nSymbols with signals in last {recent_period} bars: {len(found)}")
+    for entry in found:
+        print(entry['symbol'])
+    return found
+
+def main():
+    parser = argparse.ArgumentParser(description="Scan symbols for recent CMF signals.")
+    parser.add_argument("symbol_list", help="CSV file with columns: symbol, period, smooth, prominence")
+    parser.add_argument("--recent", type=int, default=5, help="Recent period (bars) to scan for signals")
+    args = parser.parse_args()
+
+    symbol_df = pd.read_csv(args.symbol_list, comment='#')
+    scan_symbols(symbol_df, recent_period=args.recent)
+
+if __name__ == "__main__":
+    main()
