@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           # pip install numpy pandas scipy pyqtgraph
-          pip install numpy pandas scipy requests
+          pip install numpy pandas scipy requests FinMind yfinance
 
       - name: Run CMF scan script
         run: python scan_cmf_signals.py watchlist.csv
