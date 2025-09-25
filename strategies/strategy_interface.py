@@ -18,7 +18,7 @@ Example:
 """
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Type, Callable
-from PySide6.QtWidgets import QWidget
+# from PySide6.QtWidgets import QWidget
 
 # Registry for all user strategies
 STRATEGY_REGISTRY: Dict[str, Type['Strategy']] = {}
@@ -55,21 +55,21 @@ class Strategy(ABC):
         """Return a human-readable description of the strategy."""
         pass
 
-    @abstractmethod
-    def create_config_widget(self, parent=None) -> QWidget:
-        """Return a QWidget for configuring this strategy."""
-        pass
+    # @abstractmethod
+    # def create_config_widget(self, parent=None) -> QWidget:
+    #     """Return a QWidget for configuring this strategy."""
+    #     pass
 
-    @abstractmethod
-    def get_config(self, widget: QWidget) -> dict:
-        """Extract config parameters from the widget."""
-        pass
+    # @abstractmethod
+    # def get_config(self, widget: QWidget) -> dict:
+    #     """Extract config parameters from the widget."""
+    #     pass
 
-    def set_config(self, widget: QWidget, config: dict):
-        """(Optional) Set config parameters to the widget."""
-        pass
+    # def set_config(self, widget: QWidget, config: dict):
+    #     """(Optional) Set config parameters to the widget."""
+    #     pass
 
-    @abstractmethod
-    def plot(self, main_window, df):
-        """Plot the strategy results on the main window."""
-        pass 
+    # @abstractmethod
+    # def plot(self, main_window, df):
+    #     """Plot the strategy results on the main window."""
+    #     pass 
