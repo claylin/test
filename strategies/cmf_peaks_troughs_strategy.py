@@ -4,7 +4,7 @@ from scipy.signal import find_peaks
 from .strategy_interface import Strategy, register_strategy
 # from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QSpinBox, QDoubleSpinBox, QPushButton, QGroupBox, QSlider
 # from PySide6.QtCore import Qt, Signal
-import pyqtgraph as pg
+# import pyqtgraph as pg
 
 @register_strategy("CMF Peaks & Troughs")
 class ConfigurableCMFPeaksTroughsStrategy(Strategy):
@@ -65,47 +65,47 @@ class ConfigurableCMFPeaksTroughsStrategy(Strategy):
         widget.wma_spin.setValue(config.get("wma_period", 10))
         widget.prom_spin.setValue(config.get("prominence", 0.05)) 
 
-    def plot(self, main_window, df):
-        params = self.get_config(self.widget)
-        signals, cmf, cmf_wma = self.evaluate(df, **params)
-        # Store signals for alert system
-        self.last_signals = signals
-        # extra_data = (cmf, cmf_wma)
-        # cmf, cmf_wma = extra_data if extra_data else (None, None)
-        x = df.index.astype(np.int64) // 10**9
+    # def plot(self, main_window, df):
+    #     params = self.get_config(self.widget)
+    #     signals, cmf, cmf_wma = self.evaluate(df, **params)
+    #     # Store signals for alert system
+    #     self.last_signals = signals
+    #     # extra_data = (cmf, cmf_wma)
+    #     # cmf, cmf_wma = extra_data if extra_data else (None, None)
+    #     x = df.index.astype(np.int64) // 10**9
 
-        buy_signals = [s for s in signals if s["action"] == "buy"]
-        sell_signals = [s for s in signals if s["action"] == "sell"]
+    #     buy_signals = [s for s in signals if s["action"] == "buy"]
+    #     sell_signals = [s for s in signals if s["action"] == "sell"]
 
-        # Update buy/sell signals on price plot
-        if buy_signals:
-            buy_idx = [df.index.get_loc(s["index"]) for s in buy_signals]
-            main_window.buy_plot_item.setData(x[buy_idx], df["Close"].iloc[buy_idx].to_numpy())
-        else:
-            main_window.buy_plot_item.setData([], []) # Clear data
+    #     # Update buy/sell signals on price plot
+    #     if buy_signals:
+    #         buy_idx = [df.index.get_loc(s["index"]) for s in buy_signals]
+    #         main_window.buy_plot_item.setData(x[buy_idx], df["Close"].iloc[buy_idx].to_numpy())
+    #     else:
+    #         main_window.buy_plot_item.setData([], []) # Clear data
 
-        if sell_signals:
-            sell_idx = [df.index.get_loc(s["index"]) for s in sell_signals]
-            main_window.sell_plot_item.setData(x[sell_idx], df["Close"].iloc[sell_idx].to_numpy())
-        else:
-            main_window.sell_plot_item.setData([], []) # Clear data
+    #     if sell_signals:
+    #         sell_idx = [df.index.get_loc(s["index"]) for s in sell_signals]
+    #         main_window.sell_plot_item.setData(x[sell_idx], df["Close"].iloc[sell_idx].to_numpy())
+    #     else:
+    #         main_window.sell_plot_item.setData([], []) # Clear data
 
-        # Update CMF and CMF_WMA on CMF plot
-        if cmf is not None:
-            main_window.indicator_plot_item1.setData(x.to_numpy(), cmf.to_numpy())
-            main_window.indicator_plot_item1.setPen(pg.mkPen('b', width=1))
-            # main_window.indicator_plot_item1.setName('CMF')
-        else:
-            main_window.indicator_plot_item1.setData([], [])
+    #     # Update CMF and CMF_WMA on CMF plot
+    #     if cmf is not None:
+    #         main_window.indicator_plot_item1.setData(x.to_numpy(), cmf.to_numpy())
+    #         main_window.indicator_plot_item1.setPen(pg.mkPen('b', width=1))
+    #         # main_window.indicator_plot_item1.setName('CMF')
+    #     else:
+    #         main_window.indicator_plot_item1.setData([], [])
 
-        if cmf_wma is not None:
-            main_window.indicator_plot_item2.setData(x.to_numpy(), cmf_wma.to_numpy())
-            main_window.indicator_plot_item2.setPen(pg.mkPen('y', width=1))
-            # main_window.indicator_plot_item2.setName('CMF WMA')
-        else:
-            main_window.indicator_plot_item2.setData([], [])
+    #     if cmf_wma is not None:
+    #         main_window.indicator_plot_item2.setData(x.to_numpy(), cmf_wma.to_numpy())
+    #         main_window.indicator_plot_item2.setPen(pg.mkPen('y', width=1))
+    #         # main_window.indicator_plot_item2.setName('CMF WMA')
+    #     else:
+    #         main_window.indicator_plot_item2.setData([], [])
 
-        main_window.status.setText(f"Updated {main_window.current_symbol} with {len(buy_signals)} buys and {len(sell_signals)} sells.")
+    #     main_window.status.setText(f"Updated {main_window.current_symbol} with {len(buy_signals)} buys and {len(sell_signals)} sells.")
     
     def get_last_signals(self):
         """Return the last generated signals for alert system."""
