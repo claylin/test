@@ -1,0 +1,22 @@
+symbol,name,period,smooth,prominence,theme,focus,業務方向
+# ETF
+VOO,Vanguard S&P 500 ETF,20,8,0.05,ETF,focus,Vanguard S&P 500 ETF
+IJH,iShares Core S&P MidCap ETF,20,6,0.05,ETF,focus,iShares Core S&P MidCap ETF
+IJR,iShares Core S&P Small-Cap ETF,20,5,0.04,ETF,focus,iShares Core S&P Small-Cap ETF
+IWM,iShares Russell 2000 ETF,20,8,0.03,ETF,focus,iShares Russell 2000 ETF
+VT,Vanguard Total World Stock ETF,20,9,0.02,ETF,focus,Vanguard Total World Stock ETF
+XLV,Health Care Select Sect SPDR ETF,20,9,0.04,ETF,focus,Health Care Select Sect SPDR ETF
+XLF,Financial Select Sector SPDR ETF,20,5,0.04,ETF,focus,Financial Select Sector SPDR ETF
+XLP,Consumer Staples Select Sector SPDR ETF,20,7,0.03,ETF,focus,Consumer Staples Select Sector SPDR ETF
+VGT,Vanguard Information Technology ETF,20,5,0.06,ETF,focus,Vanguard Information Technology ETF
+QQQ,Invesco QQQ ETF,20,5,0.02,ETF,focus,Invesco QQQ ETF
+ITA,iShares U.S. Aerospace & Defense ETF,20,6,0.04,ETF,focus,iShares U.S. Aerospace & Defense ETF
+IPAY,ETFMG Prime Mobile Payments ETF,20,8,0.02,ETF,focus,ETFMG Prime Mobile Payments ETF
+FIVG,Defiance Next Gen Connectivity ETF,20,7,0.04,ETF,focus,Defiance Next Gen Connectivity ETF
+TLT,iShares 20+ Year Treasury Bond ETF,20,6,0.09,ETF,focus,iShares 20+ Year Treasury Bond ETF
+BND,Vanguard Total Bond Market ETF,20,6,0.08,ETF,focus,Vanguard Total Bond Market ETF
+GLD,SPDR Gold Trust ETF,20,8,0.09,ETF,focus,SPDR Gold Trust ETF
+SLV,iShares Silver Trust ETF,20,8,0.04,ETF,focus,iShares Silver Trust ETF
+MCHI,iShares MSCI China ETF,20,9,0.05,ETF,focus,iShares MSCI China ETF
+EWT,iShares MSCI Taiwan Capped ETF,20,6,0.02,ETF,focus,iShares MSCI Taiwan Capped ETF
+EWJ,iShares MSCI Japan ETF,20,8,0.03,ETF,focus,iShares MSCI Japan ETF

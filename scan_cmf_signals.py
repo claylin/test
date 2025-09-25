@@ -4,12 +4,25 @@ import pandas as pd
 import argparse
 from strategies.cmf_peaks_troughs_strategy import ConfigurableCMFPeaksTroughsStrategy
 from data_sources import data_source_manager
+import requests  # Add this import
 
 def get_data_for_symbol(symbol, period="6mo"):
     """
     Fetch data using the same logic as the app (best source for symbol).
     """
     return data_source_manager.fetch_data(symbol, period)
+
+def send_ntfy_notification(topic, message):
+    """
+    Send a notification to ntfy.sh with the given topic and message.
+    """
+    url = f"https://ntfy.sh/{topic}"
+    try:
+        response = requests.post(url, data=message.encode('utf-8'))
+        if response.status_code != 200:
+            print(f"Failed to send ntfy notification: {response.status_code}")
+    except Exception as e:
+        print(f"Error sending ntfy notification: {e}")
 
 def scan_symbols(symbol_df, recent_period=5):
     strategy = ConfigurableCMFPeaksTroughsStrategy()
@@ -33,6 +46,11 @@ def scan_symbols(symbol_df, recent_period=5):
             if has_signal:
                 found.append({'symbol': symbol, 'signals': signals})
                 print(f"{symbol}: {signals}")
+                # Send ntfy notification for each signal found
+                send_ntfy_notification(
+                    topic="claylin_alert",  # You can customize this topic
+                    message=f"{symbol}: {signals}"
+                )
         except Exception as e:
             print(f"Error processing {symbol}: {e}")
     print(f"\nSymbols with signals in last {recent_period} bars: {len(found)}")
